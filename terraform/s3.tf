@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "site_bucket" {
         ## future: https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html
     }
 
-    tags {
+    tags = {
         jekyll = "true"
     }
 }
@@ -29,14 +29,13 @@ data "aws_iam_policy_document" "s3_origin_policy" {
         condition {
             test = "IpAddress"
             variable = "aws:SourceIp"
-            values = [ "${data.aws_ip_ranges.cloudfront.cidr_blocks}" ]
-
+            values = data.aws_ip_ranges.cloudfront.cidr_blocks
         }
     }
 
     statement {
         actions   = ["s3:ListBucket"]
-        resources = ["${aws_s3_bucket.site_bucket.arn}"]
+        resources = [ aws_s3_bucket.site_bucket.arn ]
         principals {
             type        = "*"
             identifiers = [ "*" ]
@@ -45,14 +44,13 @@ data "aws_iam_policy_document" "s3_origin_policy" {
         condition {
             test = "IpAddress"
             variable = "aws:SourceIp"
-            values = [ "${data.aws_ip_ranges.cloudfront.cidr_blocks}" ]
-
+            values = data.aws_ip_ranges.cloudfront.cidr_blocks
         }
     }
 
     # https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html
     statement {
-        actions = ["s3:PutObject"]
+        actions = [ "s3:PutObject" ]
         resources = ["${aws_s3_bucket.site_bucket.arn}/${local.emails_prefix}/*"]
 
         principals {
@@ -63,12 +61,12 @@ data "aws_iam_policy_document" "s3_origin_policy" {
         condition {
             test = "StringEquals"
             variable = "aws:Referer"
-            values = [ "${data.aws_caller_identity.current.account_id}" ]
+            values = [ data.aws_caller_identity.current.account_id ]
         }
     }
 }
 
 resource "aws_s3_bucket_policy" "s3_origin_policy" {
-    bucket = "${aws_s3_bucket.site_bucket.id}"
-    policy = "${data.aws_iam_policy_document.s3_origin_policy.json}"
+    bucket = aws_s3_bucket.site_bucket.id
+    policy = data.aws_iam_policy_document.s3_origin_policy.json
 }

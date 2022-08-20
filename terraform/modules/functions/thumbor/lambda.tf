@@ -1,10 +1,10 @@
 resource "aws_lambda_function" "fn" {
-    function_name = "${local.fn_name}"
+    function_name = local.fn_name
 
-    role = "${aws_iam_role.lambda.arn}"
+    role = aws_iam_role.lambda.arn
 
-    s3_bucket = "${module.fingerprinted_bucket_object.bucket}"
-    s3_key    = "${module.fingerprinted_bucket_object.object}"
+    s3_bucket = module.fingerprinted_bucket_object.bucket
+    s3_key    = module.fingerprinted_bucket_object.object
 
     runtime = "python3.7"
     handler = "image_handler/lambda_function.lambda_handler"
@@ -21,9 +21,9 @@ resource "aws_lambda_function" "fn" {
             RESPECT_ORIENTATION = "True"
 
             TC_AWS_ENDPOINT = "https://s3.amazonaws.com"
-            TC_AWS_REGION = "${var.bucket_region}"
-            TC_AWS_LOADER_BUCKET = "${var.bucket}"
-            TC_AWS_LOADER_ROOT_PATH = "${var.photos_prefix}"
+            TC_AWS_REGION = var.bucket_region
+            TC_AWS_LOADER_BUCKET = var.bucket
+            TC_AWS_LOADER_ROOT_PATH = var.photos_prefix
         }
     }
 }
@@ -31,8 +31,8 @@ resource "aws_lambda_function" "fn" {
 resource "aws_lambda_permission" "api_gateway" {
     statement_id = "AllowAPIGatewayInvoke"
     action = "lambda:InvokeFunction"
-    function_name = "${aws_lambda_function.fn.function_name}"
+    function_name = aws_lambda_function.fn.function_name
     principal = "apigateway.amazonaws.com"
 
-    source_arn = "${var.api_gateway_exec_arn}"
+    source_arn = var.api_gateway_exec_arn
 }
