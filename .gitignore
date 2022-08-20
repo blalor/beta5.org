@@ -1,3 +1,4 @@
 .direnv/
 thumbor/dist/
 post-by-email/dist/
+.jekyll-cache/
