@@ -3,7 +3,7 @@ locals {
     pbe_fqdn = substr(
         local.pbe_fqdn_canonical,
         0,
-        length(local.pbe_fqdn_canonical) - 1,
+        length(local.pbe_fqdn_canonical),
     )
 }
 
