@@ -6,7 +6,7 @@ resource "aws_lambda_function" "fn" {
     s3_bucket = "${module.fingerprinted_bucket_object.bucket}"
     s3_key    = "${module.fingerprinted_bucket_object.object}"
 
-    runtime = "python2.7"
+    runtime = "python3.7"
     handler = "image_handler/lambda_function.lambda_handler"
     memory_size = 1536
     timeout = 10

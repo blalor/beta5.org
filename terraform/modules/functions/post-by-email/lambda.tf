@@ -3,7 +3,7 @@ resource "aws_lambda_function" "fn" {
 
     role = "${aws_iam_role.lambda.arn}"
 
-    runtime = "python2.7"
+    runtime = "python3.7"
     timeout = 300
     ## git seems kinda hungry
     memory_size = 256
