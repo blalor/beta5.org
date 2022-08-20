@@ -6,27 +6,27 @@ version: 2
 jobs:
     sanity-check:
         docker:
-            - image: &RUBY_IMAGE circleci/ruby:2.4
+            - image: &RUBY_IMAGE circleci/ruby:3.0
 
         steps:
-            - run:
-                name: environment
-                command: |-
-                    set -ux
+            -   run:
+                    name: environment
+                    command: |-
+                        set -ux
 
-                    function fail() {
-                        echo "$*"
-                        exit 1
-                    }
+                        function fail() {
+                            echo "$*"
+                            exit 1
+                        }
 
-                    test -n "${AWS_ACCESS_KEY_ID:-}"     || fail "AWS_ACCESS_KEY_ID not set"
-                    test -n "${AWS_SECRET_ACCESS_KEY:-}" || fail "AWS_SECRET_ACCESS_KEY not set"
-                    test -n "${STATE_BUCKET:-}"          || fail "STATE_BUCKET not set"
-                    test -n "${STATE_BUCKET_REGION:-}"   || fail "STATE_BUCKET_REGION not set"
+                        test -n "${AWS_ACCESS_KEY_ID:-}"     || fail "AWS_ACCESS_KEY_ID not set"
+                        test -n "${AWS_SECRET_ACCESS_KEY:-}" || fail "AWS_SECRET_ACCESS_KEY not set"
+                        test -n "${STATE_BUCKET:-}"          || fail "STATE_BUCKET not set"
+                        test -n "${STATE_BUCKET_REGION:-}"   || fail "STATE_BUCKET_REGION not set"
 
-                    test -n "${TF_VAR_addr_validation_hmac_key:-}" || fail "TF_VAR_addr_validation_hmac_key not set"
-                    test -n "${TF_VAR_git_repo:-}"                 || fail "TF_VAR_git_repo not set"
-                    test -n "${TF_VAR_opencage_api_key:-}"         || fail "TF_VAR_opencage_api_key not set"
+                        test -n "${TF_VAR_addr_validation_hmac_key:-}" || fail "TF_VAR_addr_validation_hmac_key not set"
+                        test -n "${TF_VAR_git_repo:-}"                 || fail "TF_VAR_git_repo not set"
+                        test -n "${TF_VAR_opencage_api_key:-}"         || fail "TF_VAR_opencage_api_key not set"
 
     build-site:
         docker:
@@ -35,31 +35,31 @@ jobs:
         working_directory: ~/project/jekyll
 
         steps:
-            - checkout:
-                path: ~/project
+            -   checkout:
+                    path: ~/project
 
-            - restore_cache:
-                keys:
-                    - &CACHE_KEY v2-dependencies-{{ checksum "Gemfile.lock" }}
+            -   restore_cache:
+                    keys:
+                        - &CACHE_KEY v2-dependencies-{{ checksum "Gemfile.lock" }}
 
-            - run:
-                name: install dependencies
-                command: |-
-                    bundle install --jobs=4 --retry=3 --path /tmp/vendor/bundle
+            -   run:
+                    name: install dependencies
+                    command: |-
+                        bundle install --jobs=4 --retry=3 --path /tmp/vendor/bundle
 
-            - save_cache:
-                key: *CACHE_KEY
-                paths:
-                    - /tmp/vendor/bundle
+            -   save_cache:
+                    key: *CACHE_KEY
+                    paths:
+                        - /tmp/vendor/bundle
 
-            - run:
-                name: jekyll build
-                command: |-
-                    bundle exec jekyll build
+            -   run:
+                    name: jekyll build
+                    command: |-
+                        bundle exec jekyll build
 
-            - persist_to_workspace:
-                root: "."
-                paths: _site/*
+            -   persist_to_workspace:
+                    root: "."
+                    paths: _site/*
 
     package-thumbor:
         docker:
@@ -69,22 +69,22 @@ jobs:
             - checkout
 
             ## only build when the thumbor build script or config file has changed
-            - restore_cache:
-                keys:
-                    - &THUMBOR_CACHE_KEY v1-dependencies-{{ checksum "thumbor/requirements.txt" }}-{{ checksum "thumbor/thumbor.conf" }}
+            -   restore_cache:
+                    keys:
+                        - &THUMBOR_CACHE_KEY v1-dependencies-{{ checksum "thumbor/requirements.txt" }}-{{ checksum "thumbor/thumbor.conf" }}
 
-            - run:
-                name: package thumbor function
-                command: test -e thumbor/dist/image-handler.zip || thumbor/build.sh
+            -   run:
+                    name: package thumbor function
+                    command: test -e thumbor/dist/image-handler.zip || thumbor/build.sh
 
-            - save_cache:
-                key: *THUMBOR_CACHE_KEY
-                paths:
-                    - thumbor/dist
+            -   save_cache:
+                    key: *THUMBOR_CACHE_KEY
+                    paths:
+                        - thumbor/dist
 
-            - persist_to_workspace:
-                root: "."
-                paths: thumbor/dist/image-handler.zip
+            -   persist_to_workspace:
+                    root: "."
+                    paths: thumbor/dist/image-handler.zip
 
     package-post-by-email:
         docker:
@@ -94,22 +94,22 @@ jobs:
             - checkout
 
             ## only build when the thumbor build script or config file has changed
-            - restore_cache:
-                keys:
-                    - &PBE_CACHE_KEY v1-dependencies-{{ checksum "post-by-email/requirements.txt" }}
+            -   restore_cache:
+                    keys:
+                        - &PBE_CACHE_KEY v1-dependencies-{{ checksum "post-by-email/requirements.txt" }}
 
-            - run:
-                name: package post-by-email function
-                command: test -e post-by-email/dist/post-by-email.zip || post-by-email/build.sh
+            -   run:
+                    name: package post-by-email function
+                    command: test -e post-by-email/dist/post-by-email.zip || post-by-email/build.sh
 
-            - save_cache:
-                key: *PBE_CACHE_KEY
-                paths:
-                    - post-by-email/dist
+            -   save_cache:
+                    key: *PBE_CACHE_KEY
+                    paths:
+                        - post-by-email/dist
 
-            - persist_to_workspace:
-                root: "."
-                paths: post-by-email/dist/post-by-email.zip
+            -   persist_to_workspace:
+                    root: "."
+                    paths: post-by-email/dist/post-by-email.zip
 
     terraform:
         docker:
@@ -118,77 +118,77 @@ jobs:
         working_directory: ~/project/terraform
 
         steps:
-            - checkout:
-                path: ~/project
+            -   checkout:
+                    path: ~/project
 
             ## populate ~/project/thumbor/dist
-            - attach_workspace:
-                at: ~/project
+            -   attach_workspace:
+                    at: ~/project
 
-            - run: terraform init -input=false -backend-config=bucket=${STATE_BUCKET} -backend-config=region=${STATE_BUCKET_REGION}
-            - run: terraform plan -input=false -out=plan
-            - run: terraform apply plan
-            - run: terraform output -json > terraform.json
+            -   run: terraform init -input=false -backend-config=bucket=${STATE_BUCKET} -backend-config=region=${STATE_BUCKET_REGION}
+            -   run: terraform plan -input=false -out=plan
+            -   run: terraform apply plan
+            -   run: terraform output -json > terraform.json
 
-            - persist_to_workspace:
-                root: "."
-                paths: terraform.json
+            -   persist_to_workspace:
+                    root: "."
+                    paths: terraform.json
 
     deploy-site:
         docker:
             - image: circleci/python:3.8
 
         steps:
-            - attach_workspace:
-                at: "."
+            -   attach_workspace:
+                    at: "."
 
-            - restore_cache:
-                keys:
-                    - &AWSCLI_CACHE awscli==1.16.2
+            -   restore_cache:
+                    keys:
+                        - &AWSCLI_CACHE awscli==1.16.2
 
-            - run:
-                name: install dependencies
-                command: pip install awscli==1.16.2 --upgrade --user
+            -   run:
+                    name: install dependencies
+                    command: pip install awscli==1.16.2 --upgrade --user
 
-            - save_cache:
-                key: *AWSCLI_CACHE
-                paths:
-                    - ~/.local
+            -   save_cache:
+                    key: *AWSCLI_CACHE
+                    paths:
+                        - ~/.local
 
-            - run:
-                name: sync site
-                command: |-
-                    target="$( jq -r '"s3://" + .bucket.value + "/" + .jekyll_site_prefix.value' terraform.json )"
+            -   run:
+                    name: sync site
+                    command: |-
+                        target="$( jq -r '"s3://" + .bucket.value + "/" + .jekyll_site_prefix.value' terraform.json )"
 
-                    ~/.local/bin/aws s3 sync --quiet --delete _site/ "${target}"
+                        ~/.local/bin/aws s3 sync --quiet --delete _site/ "${target}"
 
 workflows:
     version: 2
     build-and-deploy:
         jobs:
-            - sanity-check
-            - package-thumbor
-            - package-post-by-email
+            -   sanity-check
+            -   package-thumbor
+            -   package-post-by-email
 
-            - build-site:
-                requires:
-                    - sanity-check
+            -   build-site:
+                    requires:
+                        - sanity-check
 
-            - terraform:
-                filters:
-                    branches:
-                        only: master
+            -   terraform:
+                    filters:
+                        branches:
+                            only: master
 
-                requires:
-                    - sanity-check
-                    - package-thumbor
-                    - package-post-by-email
+                    requires:
+                        - sanity-check
+                        - package-thumbor
+                        - package-post-by-email
 
-            - deploy-site:
-                filters:
-                    branches:
-                        only: master
+            -   deploy-site:
+                    filters:
+                        branches:
+                            only: master
 
-                requires:
-                    - build-site
-                    - terraform
+                        requires:
+                            - build-site
+                            - terraform
