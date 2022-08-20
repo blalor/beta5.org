@@ -1,15 +1,19 @@
 locals {
     pbe_fqdn_canonical = "${var.post_by_email_hostname}.${data.aws_route53_zone.main.name}"
-    pbe_fqdn = "${substr(local.pbe_fqdn_canonical, 0, length(local.pbe_fqdn_canonical) - 1)}"
+    pbe_fqdn = substr(
+        local.pbe_fqdn_canonical,
+        0,
+        length(local.pbe_fqdn_canonical),
+    )
 }
 
 resource "aws_ses_domain_identity" "pbe" {
-    domain = "${local.pbe_fqdn_canonical}"
+    domain = local.pbe_fqdn_canonical
 }
 
 resource "aws_ses_domain_dkim" "pbe" {
     ## can't have the trailing '.'
-    domain = "${local.pbe_fqdn}"
+    domain = local.pbe_fqdn
 }
 
 ## store all email in the s3 bucket
@@ -19,18 +23,18 @@ resource "aws_ses_receipt_rule" "pbe" {
     enabled = true
 
     recipients = [
-        "${local.pbe_fqdn}",
+        local.pbe_fqdn,
     ]
 
     scan_enabled = true
 
     s3_action {
         position = 1
-        bucket_name = "${aws_s3_bucket.site_bucket.id}"
+        bucket_name = aws_s3_bucket.site_bucket.id
         object_key_prefix = "${local.emails_prefix}/"
 
-        topic_arn = "${aws_sns_topic.pbe.arn}"
+        topic_arn = aws_sns_topic.pbe.arn
     }
 
-    depends_on = [ "aws_s3_bucket_policy.s3_origin_policy" ]
+    depends_on = [ aws_s3_bucket_policy.s3_origin_policy ]
 }

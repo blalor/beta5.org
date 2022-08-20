@@ -16,7 +16,7 @@ data "aws_iam_policy_document" "exec" {
         actions = ["sqs:SendMessage"]
 
         resources = [
-            "${aws_sqs_queue.lambda_dead_letter.arn}",
+            aws_sqs_queue.lambda_dead_letter.arn,
         ]
     }
 
@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "exec" {
         ]
 
         resources = [
-            "arn:aws:s3:::${var.s3_email_bucket}/${var.s3_email_path_prefix}/*"
+            "arn:aws:s3:::${var.s3_email_bucket}/${var.s3_email_path_prefix}/*",
         ]
     }
 
@@ -56,7 +56,7 @@ data "aws_iam_policy_document" "exec" {
         ]
 
         resources = [
-            "arn:aws:s3:::${var.s3_image_bucket}/${var.s3_image_path_prefix}/*"
+            "arn:aws:s3:::${var.s3_image_bucket}/${var.s3_image_path_prefix}/*",
         ]
     }
 
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "exec" {
         ]
 
         resources = [
-            "arn:aws:s3:::${var.s3_image_bucket}"
+            "arn:aws:s3:::${var.s3_image_bucket}",
         ]
     }
 }
@@ -79,12 +79,12 @@ resource "aws_iam_role" "lambda" {
     name_prefix = "lambda-${local.fn_name}-assume-"
     description = "Permissions for the ${local.fn_name} function"
 
-    assume_role_policy = "${data.aws_iam_policy_document.assume.json}"
+    assume_role_policy = data.aws_iam_policy_document.assume.json
 }
 
 resource "aws_iam_role_policy" "lambda" {
     name_prefix = "lambda-${local.fn_name}-exec-"
-    role = "${aws_iam_role.lambda.id}"
+    role = aws_iam_role.lambda.id
 
-    policy = "${data.aws_iam_policy_document.exec.json}"
+    policy = data.aws_iam_policy_document.exec.json
 }

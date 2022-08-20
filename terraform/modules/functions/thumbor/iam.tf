@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "exec" {
         ]
 
         resources = [
-            "arn:aws:s3:::${var.bucket}/${var.photos_prefix}/*"
+            "arn:aws:s3:::${var.bucket}/${var.photos_prefix}/*",
         ]
     }
 
@@ -40,11 +40,11 @@ resource "aws_iam_role" "lambda" {
     path = "/service-role/"
     name = "LambdaThumbor"
     description = "Permissions for the ${local.fn_name} function"
-    assume_role_policy = "${data.aws_iam_policy_document.assume.json}"
+    assume_role_policy = data.aws_iam_policy_document.assume.json
 }
 
 resource "aws_iam_role_policy" "lambda" {
-    name = "${aws_iam_role.lambda.name}"
-    role = "${aws_iam_role.lambda.id}"
-    policy = "${data.aws_iam_policy_document.exec.json}"
+    name = aws_iam_role.lambda.name
+    role = aws_iam_role.lambda.id
+    policy = data.aws_iam_policy_document.exec.json
 }
