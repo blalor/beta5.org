@@ -81,7 +81,9 @@ jobs:
         working_directory: ~/project/thumbor
 
         steps:
-            -   checkout
+            -   checkout:
+                    path: ~/project
+
             -   setup_remote_docker
 
             -   run:
@@ -180,7 +182,7 @@ jobs:
             -   checkout:
                     path: ~/project
 
-            ## populate ~/project/thumbor/dist
+            ## populate ~/project/{thumbor,post-by-email}
             -   attach_workspace:
                     at: ~/project
 
@@ -236,7 +238,7 @@ workflows:
             -   terraform:
                     filters:
                         branches:
-                            only: master
+                            only: main
 
                     requires:
                         - sanity-check
@@ -246,7 +248,7 @@ workflows:
             -   deploy-site:
                     filters:
                         branches:
-                            only: master
+                            only: main
 
                     requires:
                         - build-site
