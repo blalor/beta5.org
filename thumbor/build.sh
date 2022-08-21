@@ -9,7 +9,7 @@ mkdir "${dist_dir}"
 export VIRTUAL_ENV_DISABLE_PROMPT=true
 
 venv=$( mktemp -d )
-virtualenv "${venv}"
+python -m venv "${venv}"
 
 # shellcheck disable=SC1090
 . "${venv}/bin/activate"
@@ -22,13 +22,12 @@ pip_install=(
     install
 )
 
-## packages that use `from pip.req import …` fail with pip > 9
-"${pip_install[@]}" --upgrade 'pip >=9,<10'
+"${pip_install[@]}" --upgrade pip wheel
 
 "${pip_install[@]}" -r "${basedir}/requirements.txt"
 
 ## replace thumbor config with our own
-target_conf=$( python -c 'import pkg_resources; print pkg_resources.resource_filename("image_handler", "thumbor.conf")' )
+target_conf=$( python -c 'import pkg_resources; print(pkg_resources.resource_filename("image_handler", "thumbor.conf"))' )
 cp -f "${basedir}/thumbor.conf" "${target_conf}"
 
 deactivate

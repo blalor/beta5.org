@@ -45,7 +45,8 @@ jobs:
             -   run:
                     name: install dependencies
                     command: |-
-                        bundle install --jobs=4 --retry=3 --path /tmp/vendor/bundle
+                        bundle config set --local path /tmp/vendor/bundle
+                        bundle install --jobs=4 --retry=3
 
             -   save_cache:
                     key: *CACHE_KEY
@@ -63,7 +64,7 @@ jobs:
 
     package-thumbor:
         docker:
-            - image: &PYTHON_IMAGE circleci/python:2.7
+            - image: &PYTHON_IMAGE circleci/python:3.9
 
         steps:
             - checkout
