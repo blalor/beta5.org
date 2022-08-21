@@ -122,7 +122,7 @@ jobs:
             -   run:
                     name: create docker image layer cache
                     command: |
-                        mkdir /caches
+                        test -d /caches || mkdir /caches
                         docker save --output /caches/app.tar app
 
             -   save_cache:
