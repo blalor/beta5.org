@@ -94,8 +94,9 @@ jobs:
             ## https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-upload
             -   run:
                     name: login to ecr
+                    ## why doesn't AWS_REGION work on its own?
                     command: |
-                        aws ecr get-login-password \
+                        aws --region "${AWS_REGION}" ecr get-login-password \
                         | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
 
             ## only build when the thumbor build script or config file has changed
