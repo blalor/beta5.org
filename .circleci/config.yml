@@ -34,6 +34,10 @@ jobs:
 
         working_directory: ~/project/jekyll
 
+        environment:
+            ## prevent update to Gemfile.lock, which breaks cache
+            BUNDLE_FROZEN: true
+
         steps:
             -   checkout:
                     path: ~/project
@@ -64,24 +68,39 @@ jobs:
 
     package-thumbor:
         docker:
-            - image: &PYTHON_IMAGE circleci/python:3.9
+            - image: docker:20.10.17-git
 
         steps:
-            - checkout
+            -   checkout
+            -   setup_remote_docker
 
             ## only build when the thumbor build script or config file has changed
             -   restore_cache:
                     keys:
-                        - &THUMBOR_CACHE_KEY v1-dependencies-{{ checksum "thumbor/requirements.txt" }}-{{ checksum "thumbor/thumbor.conf" }}
+                        - &THUMBOR_CACHE_KEY v1-docker-{{ .Branch }}
+                    paths:
+                        - /caches/app.tar
 
             -   run:
-                    name: package thumbor function
-                    command: test -e thumbor/dist/image-handler.zip || thumbor/build.sh
+                    name: load docker image layer cache
+                    command: docker load -i /caches/app.tar || true
+
+            -   run:
+                    name: create container image
+                    command: |
+                        cd thumbor
+                        docker build --cache-from=app -t app .
+
+            -   run:
+                    name: create docker image layer cache
+                    command: |
+                        mkdir /caches
+                        docker save -o /caches/app.tar app
 
             -   save_cache:
                     key: *THUMBOR_CACHE_KEY
                     paths:
-                        - thumbor/dist
+                        - /caches/app.tar
 
             -   persist_to_workspace:
                     root: "."
@@ -89,7 +108,7 @@ jobs:
 
     package-post-by-email:
         docker:
-            - image: *PYTHON_IMAGE
+            - image: circleci/python:3.9
 
         steps:
             - checkout
