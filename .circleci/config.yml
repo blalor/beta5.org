@@ -70,9 +70,33 @@ jobs:
         docker:
             - image: docker:20.10.17-git
 
+        environment:
+            ## this should probably be made configurable?
+            AWS_REGION: us-east-1
+
+            ## this should *definitely* be made configurable
+            # ACCT_ID: "614034963503"
+            ECR_ENDPOINT: 614034963503.dkr.ecr.us-east-1.amazonaws.com
+
+        working_directory: ~/project/thumbor
+
         steps:
             -   checkout
             -   setup_remote_docker
+
+            -   run:
+                    name: install awscli
+                    command: |
+                        apk add py-pip
+                        pip install awscli
+
+            ## fail fast if permissions aren't set up correctly
+            ## https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-upload
+            -   run:
+                    name: login to ecr
+                    command: |
+                        aws ecr get-login-password \
+                        | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
 
             ## only build when the thumbor build script or config file has changed
             -   restore_cache:
@@ -83,28 +107,42 @@ jobs:
 
             -   run:
                     name: load docker image layer cache
-                    command: docker load -i /caches/app.tar || true
+                    command: docker load --input /caches/app.tar || true
 
             -   run:
                     name: create container image
                     command: |
-                        cd thumbor
                         docker build --cache-from=app -t app .
+
+                        docker image inspect -f '{{ .Id }}' app > image-id
 
             -   run:
                     name: create docker image layer cache
                     command: |
                         mkdir /caches
-                        docker save -o /caches/app.tar app
+                        docker save --output /caches/app.tar app
 
             -   save_cache:
                     key: *THUMBOR_CACHE_KEY
                     paths:
                         - /caches/app.tar
 
+            -   run:
+                    name: push image only from main branch
+                    command: |
+                        tag="${ECR_ENDPOINT}/beta5.org/thumbor:${CIRCLE_SHA1}"
+                        echo "${tag}" > image-tag
+
+                        if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                            docker tag app "${tag}"
+                            docker push "${tag}"
+                        fi
+
             -   persist_to_workspace:
                     root: "."
-                    paths: thumbor/dist/image-handler.zip
+                    paths:
+                        - image-id
+                        - image-tag
 
     package-post-by-email:
         docker:
