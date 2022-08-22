@@ -104,7 +104,7 @@ jobs:
             ## only build when the thumbor build script or config file has changed
             -   restore_cache:
                     keys:
-                        - &THUMBOR_CACHE_KEY v1-docker-{{ .Branch }}
+                        - &THUMBOR_CACHE_KEY v1-docker-{{ .Branch }}-01
                     paths:
                         - /caches/app.tar
 
@@ -143,10 +143,10 @@ jobs:
                         # fi
 
             -   persist_to_workspace:
-                    root: ~/project/thumbor
+                    root: ~/project
                     paths:
-                        - image-id
-                        - image-tag
+                        - thumbor/image-id
+                        - thumbor/image-tag
 
     package-post-by-email:
         docker:
@@ -170,8 +170,8 @@ jobs:
                         - post-by-email/dist
 
             -   persist_to_workspace:
-                    root: ~/project/post-by-email
-                    paths: dist/post-by-email.zip
+                    root: ~/project
+                    paths: post-by-email/dist/post-by-email.zip
 
     terraform:
         docker:
@@ -198,8 +198,8 @@ jobs:
             -   run: terraform output -json > terraform.json
 
             -   persist_to_workspace:
-                    root: ~/project/terraform
-                    paths: terraform.json
+                    root: ~/project
+                    paths: terraform/terraform.json
 
     deploy-site:
         docker:
@@ -225,7 +225,7 @@ jobs:
             -   run:
                     name: sync site
                     command: |-
-                        target="$( jq -r '"s3://" + .bucket.value + "/" + .jekyll_site_prefix.value' terraform.json )"
+                        target="$( jq -r '"s3://" + .bucket.value + "/" + .jekyll_site_prefix.value' terraform/terraform.json )"
 
                         ~/.local/bin/aws s3 sync --quiet --delete _site/ "${target}"
 
