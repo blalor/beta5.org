@@ -36,7 +36,7 @@ jobs:
 
         environment:
             ## prevent update to Gemfile.lock, which breaks cache
-            BUNDLE_FROZEN: true
+            BUNDLE_FROZEN: "true"
 
         steps:
             -   checkout:
@@ -63,7 +63,7 @@ jobs:
                         bundle exec jekyll build
 
             -   persist_to_workspace:
-                    root: "."
+                    root: ~/project/jekyll
                     paths: _site/*
 
     package-thumbor:
@@ -143,7 +143,7 @@ jobs:
                         # fi
 
             -   persist_to_workspace:
-                    root: "."
+                    root: ~/project/thumbor
                     paths:
                         - image-id
                         - image-tag
@@ -170,8 +170,8 @@ jobs:
                         - post-by-email/dist
 
             -   persist_to_workspace:
-                    root: "."
-                    paths: post-by-email/dist/post-by-email.zip
+                    root: ~/project/post-by-email
+                    paths: dist/post-by-email.zip
 
     terraform:
         docker:
@@ -190,7 +190,7 @@ jobs:
             -   run:
                     name: create container image tfvars
                     command: |
-                        printf 'thumbor_image_uri = "%s"\n' $( < ~/project/thumbor/image-tag ) > container_images.tfvars
+                        printf 'thumbor_image_uri = "%s"\n' $( cat ~/project/thumbor/image-tag ) > container_images.tfvars
 
             -   run: terraform init -input=false -backend-config=bucket=${STATE_BUCKET} -backend-config=region=${STATE_BUCKET_REGION}
             -   run: terraform plan -input=false -var-file=container_images.tfvars -out=plan
@@ -198,7 +198,7 @@ jobs:
             -   run: terraform output -json > terraform.json
 
             -   persist_to_workspace:
-                    root: "."
+                    root: ~/project/terraform
                     paths: terraform.json
 
     deploy-site:
