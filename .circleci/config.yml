@@ -241,9 +241,9 @@ workflows:
                         - sanity-check
 
             -   terraform:
-                    filters:
-                        branches:
-                            only: main
+                    # filters:
+                    #     branches:
+                    #         only: main
 
                     requires:
                         - sanity-check
