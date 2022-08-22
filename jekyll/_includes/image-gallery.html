@@ -1,0 +1,10 @@
+{% assign images = include.images %}
+{% assign refs = include.refs %}
+
+<div class="gallery">
+    {% for ref in refs -%}
+        {%- assign img = images[ref] -%}
+        <a href="{{ site.static_images_base_url }}/fit-in/1600x/{{ img.path }}" data-lity><img src="{{ site.static_images_base_url }}/trim/140x140/{{ img.path }}" width="140" height="140" alt="image"></a>
+    {% endfor %}
+</div>
+

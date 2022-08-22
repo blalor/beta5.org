@@ -1,5 +1,5 @@
 ---
-title: 2004 BMW 330Ci ZHP
+title: 2004 BMW 330Ci ZHP 6-Speed
 layout: page
 excerpt: baby m3
 
@@ -71,10 +71,6 @@ images:
     P1010652_jpeg:
         path: for-sale/e46zhp/exterior/P1010652.jpeg
         caption: left side
-
-    ## no caption
-    hero:
-        path: for-sale/e46zhp/exterior/P1010653.jpeg
 
     P1010653_jpeg:
         path: for-sale/e46zhp/exterior/P1010653.jpeg
@@ -892,248 +888,346 @@ images:
     IMG_6395_jpeg:
         path: for-sale/e46zhp/under-side/IMG_6395.jpeg
         caption: subframe bushing detail
+
+image_groups:
+    exterior:
+        - P1010642_jpeg
+        - P1010643_jpeg
+        - P1010644_jpeg
+        - P1010645_jpeg
+        - P1010646_jpeg
+        - P1010647_jpeg
+        - P1010648_jpeg
+        - P1010649_jpeg
+        - P1010650_jpeg
+        - P1010651_jpeg
+        - P1010652_jpeg
+        - P1010653_jpeg
+        - P1010655_jpeg
+        - DJI_0155_jpeg
+        - DJI_0156_jpeg
+        - DJI_0157_jpeg
+        - DJI_0158_jpeg
+        - DJI_0159_jpeg
+        - DJI_0160_jpeg
+        - P1010656_jpeg
+        - P1010657_jpeg
+        - P1010658_jpeg
+        - P1010659_jpeg
+        - P1010660_jpeg
+        - P1010661_jpeg
+        - P1010662_jpeg
+        - P1010663_jpeg
+        - P1010664_jpeg
+        - P1010665_jpeg
+        - P1010667_jpeg
+        - P1010668_jpeg
+        - P1010669_jpeg
+        - P1010670_jpeg
+        - P1010671_jpeg
+        - P1010672_jpeg
+        - P1010673_jpeg
+        - P1010674_jpeg
+        - P1010675_jpeg
+        - P1010676_jpeg
+        - P1010677_jpeg
+        - P1010678_jpeg
+        - P1010679_jpeg
+        - P1010681_jpeg
+        - P1010682_jpeg
+        - P1010683_jpeg
+        - P1010684_jpeg
+        - P1010685_jpeg
+        - P1010686_jpeg
+        - P1010687_jpeg
+        - P1010689_jpeg
+        - P1010690_jpeg
+        - P1010691_jpeg
+        - P1010692_jpeg
+        - P1010693_jpeg
+        - P1010694_jpeg
+        - P1010696_jpeg
+        - P1010697_jpeg
+        - P1010698_jpeg
+        - P1010699_jpeg
+        - P1010700_jpeg
+        - P1010702_jpeg
+        - P1010703_jpeg
+        - P1010704_jpeg
+        - P1010705_jpeg
+        - P1010706_jpeg
+        - P1010707_jpeg
+        - P1010710_jpeg
+        - P1010711_jpeg
+        - P1010712_jpeg
+        - P1010713_jpeg
+        - P1010714_jpeg
+        - P1010715_jpeg
+        - P1010716_jpeg
+        - P1010717_jpeg
+        - P1010718_jpeg
+        - P1010720_jpeg
+        - P1010721_jpeg
+        - P1010723_jpeg
+        - P1010725_jpeg
+        - P1010726_jpeg
+        - P1010776_jpeg
+        - P1010777_jpeg
+        - P1010778_jpeg
+        - P1010788_jpeg
+        - P8070789_jpeg
+        - P8070790_jpeg
+        - P8070791_jpeg
+        - P8070792_jpeg
+        - P8070793_jpeg
+        - P8070794_jpeg
+        - P8070795_jpeg
+        - P8070796_jpeg
+        - P8070797_jpeg
+        - P8070798_jpeg
+        - P8070799_jpeg
+        - P8070800_jpeg
+    
+    interior:
+        - IMG_6402_jpeg
+        - IMG_6403_jpeg
+        - IMG_6526_jpeg
+        - IMG_6527_jpeg
+        - IMG_6528_jpeg
+        - IMG_6529_jpeg
+        - IMG_6530_jpeg
+        - IMG_6531_jpeg
+        - IMG_6532_jpeg
+        - IMG_6533_jpeg
+        - IMG_6534_jpeg
+        - IMG_6535_jpeg
+        - IMG_6536_jpeg
+        - IMG_6537_jpeg
+        - IMG_6538_jpeg
+        - IMG_6541_jpeg
+        - IMG_6542_jpeg
+        - IMG_6545_jpeg
+        - IMG_6547_jpeg
+        - IMG_6548_jpeg
+        - P1010784_jpeg
+        - P8070802_jpeg
+        - P8070803_jpeg
+        - P8070804_jpeg
+        - P8070805_jpeg
+        - P8070806_jpeg
+        - P8070807_jpeg
+        - P8070808_jpeg
+        - P8070809_jpeg
+        - P8070810_jpeg
+        - P8070812_jpeg
+        - P8070815_jpeg
+        - P8070817_jpeg
+        - P8070818_jpeg
+        - P8070819_jpeg
+        - P8070820_jpeg
+        - P8070821_jpeg
+        - P8070822_jpeg
+        - P8070823_jpeg
+        - P8070824_jpeg
+        - P8070825_jpeg
+        - P8070830_jpeg
+        - P8070831_jpeg
+        - P8070832_jpeg
+        - P8070833_jpeg
+        - P8070838_jpeg
+        - P8070839_jpeg
+        - P8070840_jpeg
+        - P8070841_jpeg
+        - P8070842_jpeg
+        - P8070843_jpeg
+        - P8070844_jpeg
+        - P8070845_jpeg
+        - P8070847_jpeg
+        - P8070848_jpeg
+        - P8070849_jpeg
+        - P8070850_jpeg
+        - P8070851_jpeg
+        - P8070852_jpeg
+        - P8070853_jpeg
+        - P8070854_jpeg
+        - P8070855_jpeg
+        - P8070856_jpeg
+        - P8070860_jpeg
+        - P8070861_jpeg
+
+    undercarriage:
+        - IMG_6315_jpeg
+        - IMG_6316_jpeg
+        - IMG_6317_jpeg
+        - IMG_6318_jpeg
+        - IMG_6319_jpeg
+        - IMG_6320_jpeg
+        - IMG_6321_jpeg
+        - IMG_6322_jpeg
+        - IMG_6324_jpeg
+        - IMG_6325_jpeg
+        - IMG_6326_jpeg
+        - IMG_6327_jpeg
+        - IMG_6328_jpeg
+        - IMG_6330_jpeg
+        - IMG_6331_jpeg
+        - IMG_6332_jpeg
+        - IMG_6333_jpeg
+        - IMG_6334_jpeg
+        - IMG_6335_jpeg
+        - IMG_6337_jpeg
+        - IMG_6339_jpeg
+        - IMG_6341_jpeg
+        - IMG_6342_jpeg
+        - IMG_6343_jpeg
+        - IMG_6344_jpeg
+        - IMG_6345_jpeg
+        - IMG_6346_jpeg
+        - IMG_6347_jpeg
+        - IMG_6348_jpeg
+        - IMG_6350_jpeg
+        - IMG_6351_jpeg
+        - IMG_6352_jpeg
+        - IMG_6353_jpeg
+        - IMG_6354_jpeg
+        - IMG_6355_jpeg
+        - IMG_6356_jpeg
+        - IMG_6357_jpeg
+        - IMG_6358_jpeg
+        - IMG_6359_jpeg
+        - IMG_6360_jpeg
+        - IMG_6361_jpeg
+        - IMG_6362_jpeg
+        - IMG_6367_jpeg
+        - IMG_6369_jpeg
+        - IMG_6370_jpeg
+        - IMG_6372_jpeg
+        - IMG_6373_jpeg
+        - IMG_6374_jpeg
+        - IMG_6376_jpeg
+        - IMG_6378_jpeg
+        - IMG_6380_jpeg
+        - IMG_6381_jpeg
+        - IMG_6383_jpeg
+        - IMG_6384_jpeg
+        - IMG_6387_jpeg
+        - IMG_6388_jpeg
+        - IMG_6389_jpeg
+        - IMG_6390_jpeg
+        - IMG_6391_jpeg
+        - IMG_6395_jpeg
 ---
 
-{% include exif-image.html img=page.images.hero %}
+<!-- right front quarter -->
+{% include image-embiggen.html img=page.images.P1010643_jpeg inline_size=900 %}
 
-VIN: `WBABD534X4PD98162`  
-~136,000mi
+* VIN: `WBABD534X4PD98162`
+* 136k miles
+* 3.0L M54 inline-six
+* Six-speed manual transmission
+* ZHP Package
+* Silver Gray Metallic
+* M3 interior, Nappa leather
+* Shadowline Trim
+* 18" M Double-Spoke wheels
+* Dynamic Stability Control
+* Koni Yellow shocks, adjustable
+* Rear sub-frame reinforcement
+* Glass Sunroof
+* Adaptive Xenon Headlights
+* Automatic Climate Control
 
-I purchased this car in 2014 and have put about 30,000mi on it. After driving it home from Tennessee I went through it thoroughly to address various wear items, including a complete refresh of the front suspension.  Through a stroke of good luck I acquired a complete E46 M3 interior and replaced the original seats (which were leather, not Alcantara!), trim, and door cards.  It's been well cared-for since, although it's gotten less use than I expected. After 8 years of ownership, it's time to let it go to a new home.
+This 2004 BMW 330Ci coupe is finished in Silver Gray Metallic over black Nappa leather and is powered by a 3.0-liter inline-six paired with a six-speed manual transmission. The car is equipped with the ZHP Performance Package, which added revised aerodynamic bodywork, sport suspension, a slightly-shorter final drive ratio, along with increases in horsepower and torque. Additional features include 18" Style 135M wheels, an electric sunroof, xenon headlights, Harman-Kardon sound system, and navigation.  Modifications include rear sub-frame reinforcement, and seats and trim from an E46 M3. The car was delivered new in Georgia, and spent time in Texas and Tennessee before I bought it in February 2014, bringing it briefly to Massachusetts and subsequently Virginia.  Work performed under previous ownership includes the replacement of the cooling system, belts, idlers, and tensioner. This ZHP coupe has ~136k miles and is now offered for sale with manufacturer’s literature, service records, spare parts, a clean [Carfax report][carfax], and a clean Virginia title in my name.  It is currently located in Richmond, VA.
 
-More details will be provided here this weekend.
+<!-- right rear quarter -->
+{% include image-embiggen.html img=page.images.P1010647_jpeg inline_size=900 %}
 
-$14,000  
+Additional features include adaptive xenon headlights, fog lamps, an electric sunroof, dynamic stability control, and rain-sensing windshield wipers. There are scrapes underneath the front bumper, rock chips on the hood, faded mirror trim, and peeling clear coat on the front bumper. Detailed photos showing these and other imperfections are included below. Additional modifications include Koni Yellow adjustable shocks, the complete interior and piano black trim from an E46 M3, and black kidney grilles.
+
+<!-- left side -->
+{% include image-embiggen.html img=page.images.P1010653_jpeg inline_size=900 %}
+
+OEM 18" Style 135M wheels are fitted to the car, wearing Firestone Firehawk Indy 500 tires fitted in 2018. The right rear tire was replaced in February 2022 due to an unrepairable puncture. Tread life is excellent all around.  One wheel shows curb rash, and all four have minor imperfections from mounting.  The rear windows open outward via switches on the center console. The driver's side rear window rattles slightly when open.  Both door windows are slow to drop when opening the door, causing the windows to touch the trim; pausing briefly between unlatching the door and swinging it open prevents that from happening.  Previous damage from a poorly-adjusted passenger-side window can be seen on the trim.
+
+<!-- driver-side seats -->
+{% include image-embiggen.html img=page.images.IMG_6541_jpeg inline_size=900 %}
+
+The front and rear seats, dash and console trim, and door cards and interior panels are from an E46 M3.  The original seats were leather, not Alcantara. The driver's seat bolster is in excellent condition with minimal wear. There are minor scuffs and marks on the passenger and rear seats, and on the panel below the driver's side rear window.  Carpets are in excellent condition. The driver's side floor mat shows some wear.  The front seats contain heating elements, but are not connected, as the car did not originally have heated seats. An additional button panel with seat heater controls is included with the vehicle.
+
+<!-- cockpit from sunroof -->
+{% include image-embiggen.html img=page.images.P8070833_jpeg inline_size=900 %}
+
+The cabin features power-adjustable front M3 sport seats trimmed in black Nappa leather along with an anthracite headliner. Piano black trim accents the dash, center console, and door panels. Amenities include automatic climate control, cruise control, a BMW Business CD player, a Harman Kardon sound system, and navigation. Rubberized aluminum pedal covers are fitted. The instrument cluster sports orange needles and aluminum trim around the speedometer and tach dials.  The steering wheel is wrapped in the original Alcantara suede-like fabric, which has recently been cleaned and is in very good condition.  The air conditioning blows cold and without any smells.
+
+<!-- engine -->
+{% include image-embiggen.html img=page.images.P8070844_jpeg inline_size=900 %}
+
+The original 3.0-liter M54 inline-six features upgraded engine management software and camshafts as part of the ZHP package; this raises the factory output to 235 horsepower and 222 lb-ft of torque.  There is a minor oil leak that appears to be from the oil pan or filter stand; no oil appears under the car even after sitting for an extended period, but the bottom of the engine and transmission are damp.
+
+## Service History
+
+* March 2014
+  - shocks F&R, including all mounts
+  - front control arms
+  - front control arm bushings
+  - installed rebuilt steering rack with new tie rods
+  - stainless braided brake lines, clutch line
+  - rear axle shaft seal
+  - idler and tensioner pulleys
+  - changed diff & trans fluids
+
+* July 2015: Airbag recall
+* November 2016: starter replaced
+* June 2017: Rear subframe repair and reinforcement, performed by Wile Motorsport
+* June 2017: Airbag recall
+* March 2018: New battery
+* April 2018
+    - Brake rotors replaced
+    - Replaced tires
+
+* August 2019: Replaced radio receiver
+* January 2021
+    - Replaced brake pressure sensor
+    - Replaced secondary air pump and valve
+* September 2021: Airbag recall
+* February 2022: Replaced damaged right rear tire
+* July 2022
+    - Replaced windscreen
+    - Clear-coat repair
+    - Replaced headliner, A, B, & C pillar trim
+
+Asking $14,000.  
 Contact Brian at 804-476-2522 (voice or text), or by email at blalor@bravo5.org.
+
+[CarFax history report][carfax], August 2022
+
+## Video Gallery
+
+<!--
+* [Cold start](https://youtu.be/Mz8gzwg3n3E)
+* [Driving](https://youtu.be/QCGkIRjTDRM)
+* [Gratuitous dronie](https://youtu.be/H8-ByTDiFzQ)
+-->
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Mz8gzwg3n3E" title="Cold start" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/QCGkIRjTDRM" title="Driving" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/H8-ByTDiFzQ" title="Gratuitous dronie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 Many photos! Click to embiggen.
 
-## exterior
+## Exterior
 
-{% include exif-image.html img=page.images.P1010642_jpeg %}
-{% include exif-image.html img=page.images.P1010643_jpeg %}
-{% include exif-image.html img=page.images.P1010644_jpeg %}
-{% include exif-image.html img=page.images.P1010645_jpeg %}
-{% include exif-image.html img=page.images.P1010646_jpeg %}
-{% include exif-image.html img=page.images.P1010647_jpeg %}
-{% include exif-image.html img=page.images.P1010648_jpeg %}
-{% include exif-image.html img=page.images.P1010649_jpeg %}
-{% include exif-image.html img=page.images.P1010650_jpeg %}
-{% include exif-image.html img=page.images.P1010651_jpeg %}
-{% include exif-image.html img=page.images.P1010652_jpeg %}
-{% include exif-image.html img=page.images.P1010653_jpeg %}
-{% include exif-image.html img=page.images.P1010655_jpeg %}
-{% include exif-image.html img=page.images.DJI_0155_jpeg %}
-{% include exif-image.html img=page.images.DJI_0156_jpeg %}
-{% include exif-image.html img=page.images.DJI_0157_jpeg %}
-{% include exif-image.html img=page.images.DJI_0158_jpeg %}
-{% include exif-image.html img=page.images.DJI_0159_jpeg %}
-{% include exif-image.html img=page.images.DJI_0160_jpeg %}
-{% include exif-image.html img=page.images.P1010656_jpeg %}
-{% include exif-image.html img=page.images.P1010657_jpeg %}
-{% include exif-image.html img=page.images.P1010658_jpeg %}
-{% include exif-image.html img=page.images.P1010659_jpeg %}
-{% include exif-image.html img=page.images.P1010660_jpeg %}
-{% include exif-image.html img=page.images.P1010661_jpeg %}
-{% include exif-image.html img=page.images.P1010662_jpeg %}
-{% include exif-image.html img=page.images.P1010663_jpeg %}
-{% include exif-image.html img=page.images.P1010664_jpeg %}
-{% include exif-image.html img=page.images.P1010665_jpeg %}
-{% include exif-image.html img=page.images.P1010667_jpeg %}
-{% include exif-image.html img=page.images.P1010668_jpeg %}
-{% include exif-image.html img=page.images.P1010669_jpeg %}
-{% include exif-image.html img=page.images.P1010670_jpeg %}
-{% include exif-image.html img=page.images.P1010671_jpeg %}
-{% include exif-image.html img=page.images.P1010672_jpeg %}
-{% include exif-image.html img=page.images.P1010673_jpeg %}
-{% include exif-image.html img=page.images.P1010674_jpeg %}
-{% include exif-image.html img=page.images.P1010675_jpeg %}
-{% include exif-image.html img=page.images.P1010676_jpeg %}
-{% include exif-image.html img=page.images.P1010677_jpeg %}
-{% include exif-image.html img=page.images.P1010678_jpeg %}
-{% include exif-image.html img=page.images.P1010679_jpeg %}
-{% include exif-image.html img=page.images.P1010681_jpeg %}
-{% include exif-image.html img=page.images.P1010682_jpeg %}
-{% include exif-image.html img=page.images.P1010683_jpeg %}
-{% include exif-image.html img=page.images.P1010684_jpeg %}
-{% include exif-image.html img=page.images.P1010685_jpeg %}
-{% include exif-image.html img=page.images.P1010686_jpeg %}
-{% include exif-image.html img=page.images.P1010687_jpeg %}
-{% include exif-image.html img=page.images.P1010689_jpeg %}
-{% include exif-image.html img=page.images.P1010690_jpeg %}
-{% include exif-image.html img=page.images.P1010691_jpeg %}
-{% include exif-image.html img=page.images.P1010692_jpeg %}
-{% include exif-image.html img=page.images.P1010693_jpeg %}
-{% include exif-image.html img=page.images.P1010694_jpeg %}
-{% include exif-image.html img=page.images.P1010696_jpeg %}
-{% include exif-image.html img=page.images.P1010697_jpeg %}
-{% include exif-image.html img=page.images.P1010698_jpeg %}
-{% include exif-image.html img=page.images.P1010699_jpeg %}
-{% include exif-image.html img=page.images.P1010700_jpeg %}
-{% include exif-image.html img=page.images.P1010702_jpeg %}
-{% include exif-image.html img=page.images.P1010703_jpeg %}
-{% include exif-image.html img=page.images.P1010704_jpeg %}
-{% include exif-image.html img=page.images.P1010705_jpeg %}
-{% include exif-image.html img=page.images.P1010706_jpeg %}
-{% include exif-image.html img=page.images.P1010707_jpeg %}
-{% include exif-image.html img=page.images.P1010710_jpeg %}
-{% include exif-image.html img=page.images.P1010711_jpeg %}
-{% include exif-image.html img=page.images.P1010712_jpeg %}
-{% include exif-image.html img=page.images.P1010713_jpeg %}
-{% include exif-image.html img=page.images.P1010714_jpeg %}
-{% include exif-image.html img=page.images.P1010715_jpeg %}
-{% include exif-image.html img=page.images.P1010716_jpeg %}
-{% include exif-image.html img=page.images.P1010717_jpeg %}
-{% include exif-image.html img=page.images.P1010718_jpeg %}
-{% include exif-image.html img=page.images.P1010720_jpeg %}
-{% include exif-image.html img=page.images.P1010721_jpeg %}
-{% include exif-image.html img=page.images.P1010723_jpeg %}
-{% include exif-image.html img=page.images.P1010725_jpeg %}
-{% include exif-image.html img=page.images.P1010726_jpeg %}
-{% include exif-image.html img=page.images.P1010776_jpeg %}
-{% include exif-image.html img=page.images.P1010777_jpeg %}
-{% include exif-image.html img=page.images.P1010778_jpeg %}
-{% include exif-image.html img=page.images.P1010788_jpeg %}
-{% include exif-image.html img=page.images.P8070789_jpeg %}
-{% include exif-image.html img=page.images.P8070790_jpeg %}
-{% include exif-image.html img=page.images.P8070791_jpeg %}
-{% include exif-image.html img=page.images.P8070792_jpeg %}
-{% include exif-image.html img=page.images.P8070793_jpeg %}
-{% include exif-image.html img=page.images.P8070794_jpeg %}
-{% include exif-image.html img=page.images.P8070795_jpeg %}
-{% include exif-image.html img=page.images.P8070796_jpeg %}
-{% include exif-image.html img=page.images.P8070797_jpeg %}
-{% include exif-image.html img=page.images.P8070798_jpeg %}
-{% include exif-image.html img=page.images.P8070799_jpeg %}
-{% include exif-image.html img=page.images.P8070800_jpeg %}
+{% include image-gallery.html images=page.images refs=page.image_groups.exterior %}
 
-## interior
+## Interior
 
-{% include exif-image.html img=page.images.IMG_6402_jpeg %}
-{% include exif-image.html img=page.images.IMG_6403_jpeg %}
-{% include exif-image.html img=page.images.IMG_6526_jpeg %}
-{% include exif-image.html img=page.images.IMG_6527_jpeg %}
-{% include exif-image.html img=page.images.IMG_6528_jpeg %}
-{% include exif-image.html img=page.images.IMG_6529_jpeg %}
-{% include exif-image.html img=page.images.IMG_6530_jpeg %}
-{% include exif-image.html img=page.images.IMG_6531_jpeg %}
-{% include exif-image.html img=page.images.IMG_6532_jpeg %}
-{% include exif-image.html img=page.images.IMG_6533_jpeg %}
-{% include exif-image.html img=page.images.IMG_6534_jpeg %}
-{% include exif-image.html img=page.images.IMG_6535_jpeg %}
-{% include exif-image.html img=page.images.IMG_6536_jpeg %}
-{% include exif-image.html img=page.images.IMG_6537_jpeg %}
-{% include exif-image.html img=page.images.IMG_6538_jpeg %}
-{% include exif-image.html img=page.images.IMG_6541_jpeg %}
-{% include exif-image.html img=page.images.IMG_6542_jpeg %}
-{% include exif-image.html img=page.images.IMG_6545_jpeg %}
-{% include exif-image.html img=page.images.IMG_6547_jpeg %}
-{% include exif-image.html img=page.images.IMG_6548_jpeg %}
-{% include exif-image.html img=page.images.P1010784_jpeg %}
-{% include exif-image.html img=page.images.P8070802_jpeg %}
-{% include exif-image.html img=page.images.P8070803_jpeg %}
-{% include exif-image.html img=page.images.P8070804_jpeg %}
-{% include exif-image.html img=page.images.P8070805_jpeg %}
-{% include exif-image.html img=page.images.P8070806_jpeg %}
-{% include exif-image.html img=page.images.P8070807_jpeg %}
-{% include exif-image.html img=page.images.P8070808_jpeg %}
-{% include exif-image.html img=page.images.P8070809_jpeg %}
-{% include exif-image.html img=page.images.P8070810_jpeg %}
-{% include exif-image.html img=page.images.P8070812_jpeg %}
-{% include exif-image.html img=page.images.P8070815_jpeg %}
-{% include exif-image.html img=page.images.P8070817_jpeg %}
-{% include exif-image.html img=page.images.P8070818_jpeg %}
-{% include exif-image.html img=page.images.P8070819_jpeg %}
-{% include exif-image.html img=page.images.P8070820_jpeg %}
-{% include exif-image.html img=page.images.P8070821_jpeg %}
-{% include exif-image.html img=page.images.P8070822_jpeg %}
-{% include exif-image.html img=page.images.P8070823_jpeg %}
-{% include exif-image.html img=page.images.P8070824_jpeg %}
-{% include exif-image.html img=page.images.P8070825_jpeg %}
-{% include exif-image.html img=page.images.P8070830_jpeg %}
-{% include exif-image.html img=page.images.P8070831_jpeg %}
-{% include exif-image.html img=page.images.P8070832_jpeg %}
-{% include exif-image.html img=page.images.P8070833_jpeg %}
-{% include exif-image.html img=page.images.P8070838_jpeg %}
-{% include exif-image.html img=page.images.P8070839_jpeg %}
-{% include exif-image.html img=page.images.P8070840_jpeg %}
-{% include exif-image.html img=page.images.P8070841_jpeg %}
-{% include exif-image.html img=page.images.P8070842_jpeg %}
-{% include exif-image.html img=page.images.P8070843_jpeg %}
-{% include exif-image.html img=page.images.P8070844_jpeg %}
-{% include exif-image.html img=page.images.P8070845_jpeg %}
-{% include exif-image.html img=page.images.P8070847_jpeg %}
-{% include exif-image.html img=page.images.P8070848_jpeg %}
-{% include exif-image.html img=page.images.P8070849_jpeg %}
-{% include exif-image.html img=page.images.P8070850_jpeg %}
-{% include exif-image.html img=page.images.P8070851_jpeg %}
-{% include exif-image.html img=page.images.P8070852_jpeg %}
-{% include exif-image.html img=page.images.P8070853_jpeg %}
-{% include exif-image.html img=page.images.P8070854_jpeg %}
-{% include exif-image.html img=page.images.P8070855_jpeg %}
-{% include exif-image.html img=page.images.P8070856_jpeg %}
-{% include exif-image.html img=page.images.P8070860_jpeg %}
-{% include exif-image.html img=page.images.P8070861_jpeg %}
+{% include image-gallery.html images=page.images refs=page.image_groups.interior %}
 
-## undercarriage
+## Undercarriage
 
-{% include exif-image.html img=page.images.IMG_6315_jpeg %}
-{% include exif-image.html img=page.images.IMG_6316_jpeg %}
-{% include exif-image.html img=page.images.IMG_6317_jpeg %}
-{% include exif-image.html img=page.images.IMG_6318_jpeg %}
-{% include exif-image.html img=page.images.IMG_6319_jpeg %}
-{% include exif-image.html img=page.images.IMG_6320_jpeg %}
-{% include exif-image.html img=page.images.IMG_6321_jpeg %}
-{% include exif-image.html img=page.images.IMG_6322_jpeg %}
-{% include exif-image.html img=page.images.IMG_6324_jpeg %}
-{% include exif-image.html img=page.images.IMG_6325_jpeg %}
-{% include exif-image.html img=page.images.IMG_6326_jpeg %}
-{% include exif-image.html img=page.images.IMG_6327_jpeg %}
-{% include exif-image.html img=page.images.IMG_6328_jpeg %}
-{% include exif-image.html img=page.images.IMG_6330_jpeg %}
-{% include exif-image.html img=page.images.IMG_6331_jpeg %}
-{% include exif-image.html img=page.images.IMG_6332_jpeg %}
-{% include exif-image.html img=page.images.IMG_6333_jpeg %}
-{% include exif-image.html img=page.images.IMG_6334_jpeg %}
-{% include exif-image.html img=page.images.IMG_6335_jpeg %}
-{% include exif-image.html img=page.images.IMG_6337_jpeg %}
-{% include exif-image.html img=page.images.IMG_6339_jpeg %}
-{% include exif-image.html img=page.images.IMG_6341_jpeg %}
-{% include exif-image.html img=page.images.IMG_6342_jpeg %}
-{% include exif-image.html img=page.images.IMG_6343_jpeg %}
-{% include exif-image.html img=page.images.IMG_6344_jpeg %}
-{% include exif-image.html img=page.images.IMG_6345_jpeg %}
-{% include exif-image.html img=page.images.IMG_6346_jpeg %}
-{% include exif-image.html img=page.images.IMG_6347_jpeg %}
-{% include exif-image.html img=page.images.IMG_6348_jpeg %}
-{% include exif-image.html img=page.images.IMG_6350_jpeg %}
-{% include exif-image.html img=page.images.IMG_6351_jpeg %}
-{% include exif-image.html img=page.images.IMG_6352_jpeg %}
-{% include exif-image.html img=page.images.IMG_6353_jpeg %}
-{% include exif-image.html img=page.images.IMG_6354_jpeg %}
-{% include exif-image.html img=page.images.IMG_6355_jpeg %}
-{% include exif-image.html img=page.images.IMG_6356_jpeg %}
-{% include exif-image.html img=page.images.IMG_6357_jpeg %}
-{% include exif-image.html img=page.images.IMG_6358_jpeg %}
-{% include exif-image.html img=page.images.IMG_6359_jpeg %}
-{% include exif-image.html img=page.images.IMG_6360_jpeg %}
-{% include exif-image.html img=page.images.IMG_6361_jpeg %}
-{% include exif-image.html img=page.images.IMG_6362_jpeg %}
-{% include exif-image.html img=page.images.IMG_6367_jpeg %}
-{% include exif-image.html img=page.images.IMG_6369_jpeg %}
-{% include exif-image.html img=page.images.IMG_6370_jpeg %}
-{% include exif-image.html img=page.images.IMG_6372_jpeg %}
-{% include exif-image.html img=page.images.IMG_6373_jpeg %}
-{% include exif-image.html img=page.images.IMG_6374_jpeg %}
-{% include exif-image.html img=page.images.IMG_6376_jpeg %}
-{% include exif-image.html img=page.images.IMG_6378_jpeg %}
-{% include exif-image.html img=page.images.IMG_6380_jpeg %}
-{% include exif-image.html img=page.images.IMG_6381_jpeg %}
-{% include exif-image.html img=page.images.IMG_6383_jpeg %}
-{% include exif-image.html img=page.images.IMG_6384_jpeg %}
-{% include exif-image.html img=page.images.IMG_6387_jpeg %}
-{% include exif-image.html img=page.images.IMG_6388_jpeg %}
-{% include exif-image.html img=page.images.IMG_6389_jpeg %}
-{% include exif-image.html img=page.images.IMG_6390_jpeg %}
-{% include exif-image.html img=page.images.IMG_6391_jpeg %}
-{% include exif-image.html img=page.images.IMG_6395_jpeg %}
+{% include image-gallery.html images=page.images refs=page.image_groups.undercarriage %}
+
+[carfax]: http://static.images.alpha.beta5.org/for-sale/e46zhp/carfax.pdf

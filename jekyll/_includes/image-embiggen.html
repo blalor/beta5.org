@@ -1,0 +1,5 @@
+{% assign img = include.img %}
+{% assign inline_size = include.inline_size | default: 800 %}
+<figure>
+    <a href="{{ site.static_images_base_url }}/fit-in/1600x/{{ img.path }}" data-lity><img src="{{ site.static_images_base_url }}/fit-in/{{ inline_size }}x/{{ img.path }}" alt="image"></a>
+</figure>
