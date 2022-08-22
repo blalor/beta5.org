@@ -123,8 +123,12 @@ jobs:
                     name: create docker image layer cache
                     command: |
                         test -d /caches || mkdir /caches
-                        docker image ls --format '{{ .Repository }}:{{ .Tag }}' \
-                        | xargs docker save --output /caches/app.tar
+
+                        ## don't regen cache, because it won't be uploaded
+                        if [ ! -e /caches/app.tar ]; then
+                            docker image ls --format '{{ .ID }}' \
+                            | xargs docker save --output /caches/app.tar
+                        fi
 
             -   save_cache:
                     key: *THUMBOR_CACHE_KEY
