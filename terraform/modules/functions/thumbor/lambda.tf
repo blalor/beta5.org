@@ -3,11 +3,9 @@ resource "aws_lambda_function" "fn" {
 
     role = aws_iam_role.lambda.arn
 
-    s3_bucket = module.fingerprinted_bucket_object.bucket
-    s3_key    = module.fingerprinted_bucket_object.object
+    package_type = "Image"
+    image_uri = var.container_image_uri
 
-    runtime = "python3.9"
-    handler = "image_handler/lambda_function.lambda_handler"
     memory_size = 1536
     timeout = 10
 

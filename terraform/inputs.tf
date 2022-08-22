@@ -10,6 +10,11 @@ variable "post_by_email_hostname" {
     default = "pbe"
 }
 
+variable "thumbor_image_uri" {
+    type = string
+    description = "docker image tag, probably within ECR"
+}
+
 variable "aws_region" {
     type = string
     description = "the aws region where resources will be created"
