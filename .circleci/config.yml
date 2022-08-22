@@ -141,10 +141,10 @@ jobs:
                         tag="${ECR_ENDPOINT}/beta5.org/thumbor:${CIRCLE_SHA1}"
                         echo -n "${tag}" > image-tag
 
-                        # if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                        if [ "${CIRCLE_BRANCH}" == "main" ]; then
                             docker tag app "${tag}"
                             docker push "${tag}"
-                        # fi
+                        fi
 
             -   persist_to_workspace:
                     root: ~/project
@@ -246,9 +246,9 @@ workflows:
                         - sanity-check
 
             -   terraform:
-                    # filters:
-                    #     branches:
-                    #         only: main
+                    filters:
+                        branches:
+                            only: main
 
                     requires:
                         - sanity-check
