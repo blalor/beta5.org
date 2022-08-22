@@ -34,6 +34,10 @@ jobs:
 
         working_directory: ~/project/jekyll
 
+        environment:
+            ## prevent update to Gemfile.lock, which breaks cache
+            BUNDLE_FROZEN: "true"
+
         steps:
             -   checkout:
                     path: ~/project
@@ -59,37 +63,98 @@ jobs:
                         bundle exec jekyll build
 
             -   persist_to_workspace:
-                    root: "."
+                    root: ~/project/jekyll
                     paths: _site/*
 
     package-thumbor:
         docker:
-            - image: &PYTHON_IMAGE circleci/python:3.9
+            - image: docker:20.10.17-git
+
+        environment:
+            ## this should probably be made configurable?
+            AWS_REGION: us-east-1
+
+            ## this should *definitely* be made configurable
+            # ACCT_ID: "614034963503"
+            ECR_ENDPOINT: 614034963503.dkr.ecr.us-east-1.amazonaws.com
+
+        working_directory: ~/project/thumbor
 
         steps:
-            - checkout
+            -   checkout:
+                    path: ~/project
+
+            -   setup_remote_docker
+
+            -   run:
+                    name: install awscli
+                    command: |
+                        apk add py-pip
+                        pip install awscli
+
+            ## fail fast if permissions aren't set up correctly
+            ## https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-upload
+            -   run:
+                    name: login to ecr
+                    ## why doesn't AWS_REGION work on its own?
+                    command: |
+                        aws --region "${AWS_REGION}" ecr get-login-password \
+                        | docker login --username AWS --password-stdin ${ECR_ENDPOINT}
 
             ## only build when the thumbor build script or config file has changed
             -   restore_cache:
                     keys:
-                        - &THUMBOR_CACHE_KEY v1-dependencies-{{ checksum "thumbor/requirements.txt" }}-{{ checksum "thumbor/thumbor.conf" }}
+                        - &THUMBOR_CACHE_KEY v1-docker-{{ .Branch }}-02
+                    paths:
+                        - /caches/app.tar
 
             -   run:
-                    name: package thumbor function
-                    command: test -e thumbor/dist/image-handler.zip || thumbor/build.sh
+                    name: load docker image layer cache
+                    command: docker load --input /caches/app.tar || true
+
+            -   run:
+                    name: create container image
+                    command: |
+                        docker build --cache-from=app -t app .
+
+                        docker image inspect -f '{{ .Id }}' app > image-id
+
+            -   run:
+                    name: create docker image layer cache
+                    command: |
+                        test -d /caches || mkdir /caches
+
+                        ## don't regen cache, because it won't be uploaded
+                        if [ ! -e /caches/app.tar ]; then
+                            docker image ls --format '{{ .ID }}' \
+                            | xargs docker save --output /caches/app.tar
+                        fi
 
             -   save_cache:
                     key: *THUMBOR_CACHE_KEY
                     paths:
-                        - thumbor/dist
+                        - /caches/app.tar
+
+            -   run:
+                    name: push image only from main branch
+                    command: |
+                        tag="${ECR_ENDPOINT}/beta5.org/thumbor:${CIRCLE_SHA1}"
+                        echo -n "${tag}" > image-tag
+
+                        if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                            docker tag app "${tag}"
+                            docker push "${tag}"
+                        fi
 
             -   persist_to_workspace:
-                    root: "."
-                    paths: thumbor/dist/image-handler.zip
+                    root: ~/project
+                    paths:
+                        - thumbor/image-id
+                        - thumbor/image-tag
 
     package-post-by-email:
         docker:
-            - image: *PYTHON_IMAGE
+            - image: circleci/python:3.9
 
         steps:
             - checkout
@@ -109,7 +174,7 @@ jobs:
                         - post-by-email/dist
 
             -   persist_to_workspace:
-                    root: "."
+                    root: ~/project
                     paths: post-by-email/dist/post-by-email.zip
 
     terraform:
@@ -122,18 +187,23 @@ jobs:
             -   checkout:
                     path: ~/project
 
-            ## populate ~/project/thumbor/dist
+            ## populate ~/project/{thumbor,post-by-email}
             -   attach_workspace:
                     at: ~/project
 
+            -   run:
+                    name: create container image tfvars
+                    command: |
+                        printf 'thumbor_image_uri = "%s"\n' $( cat ~/project/thumbor/image-tag ) > container_images.tfvars
+
             -   run: terraform init -input=false -backend-config=bucket=${STATE_BUCKET} -backend-config=region=${STATE_BUCKET_REGION}
-            -   run: terraform plan -input=false -out=plan
+            -   run: terraform plan -input=false -var-file=container_images.tfvars -out=plan
             -   run: terraform apply plan
             -   run: terraform output -json > terraform.json
 
             -   persist_to_workspace:
-                    root: "."
-                    paths: terraform.json
+                    root: ~/project
+                    paths: terraform/terraform.json
 
     deploy-site:
         docker:
@@ -159,7 +229,7 @@ jobs:
             -   run:
                     name: sync site
                     command: |-
-                        target="$( jq -r '"s3://" + .bucket.value + "/" + .jekyll_site_prefix.value' terraform.json )"
+                        target="$( jq -r '"s3://" + .bucket.value + "/" + .jekyll_site_prefix.value' terraform/terraform.json )"
 
                         ~/.local/bin/aws s3 sync --quiet --delete _site/ "${target}"
 
@@ -178,7 +248,7 @@ workflows:
             -   terraform:
                     filters:
                         branches:
-                            only: master
+                            only: main
 
                     requires:
                         - sanity-check
@@ -188,7 +258,7 @@ workflows:
             -   deploy-site:
                     filters:
                         branches:
-                            only: master
+                            only: main
 
                     requires:
                         - build-site

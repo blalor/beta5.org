@@ -1,2 +1,2 @@
-git+https://github.com/blalor/serverless-image-handler.git@fe771d52f17a6ec569b21851336d0b3a463de370#subdirectory=source/image-handler
+git+https://github.com/blalor/serverless-image-handler.git@96abbfded7718932a47bbb9e07c4ab1dc2f07077#subdirectory=source/image-handler
 git+https://github.com/thumbor/thumbor-plugins.git@0.2.1

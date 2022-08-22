@@ -41,6 +41,7 @@ Statement:
             - acm:DescribeCertificate
             - acm:DeleteCertificate
             - acm:RequestCertificate
+            - acm:ListTagsForCertificate
 
     ## route53
     -   Sid: route53
@@ -53,6 +54,7 @@ Statement:
             - route53:ListResourceRecordSets
             - route53:ChangeResourceRecordSets
             - route53:GetChange
+            - route53:ListTagsForResource
 
     ## s3 bucket for site resources; using bucket_prefix.
     -   Sid: SiteBucket
@@ -99,21 +101,26 @@ Statement:
             - iam:GetRolePolicy
             - iam:PassRole
             - iam:PutRolePolicy
+            - iam:ListRolePolicies
+            - iam:ListAttachedRolePolicies
 
     ## lambda
     -   Sid: lambda
         Effect: Allow
         Resource:
-            - "*"
+            - arn:aws:lambda:*:*:function:thumbor
+            - arn:aws:lambda:*:*:function:post-by-email
         Action:
             - lambda:AddPermission
             - lambda:CreateFunction
             - lambda:GetFunction
+            - lambda:GetFunctionCodeSigningConfig
             - lambda:GetPolicy
             - lambda:ListVersionsByFunction
             - lambda:RemovePermission
             - lambda:UpdateFunctionCode
             - lambda:UpdateFunctionConfiguration
+            - lambda:DeleteFunction
 
     ## ses
     -   Sid: ses
@@ -146,3 +153,25 @@ Statement:
 
         Action:
             - sqs:*
+
+    ## ecr
+    ## https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-push.html#image-push-iam
+    -   Sid: ecrAuth
+        Effect: Allow
+        Resource:
+            -  "*"
+
+        Action:
+            - ecr:GetAuthorizationToken
+
+    -   Sid: ecrPush
+        Effect: Allow
+        Resource:
+            - arn:aws:ecr:us-east-1:614034963503:repository/beta5.org/*
+
+        Action:
+            - ecr:CompleteLayerUpload
+            - ecr:UploadLayerPart
+            - ecr:InitiateLayerUpload
+            - ecr:BatchCheckLayerAvailability
+            - ecr:PutImage

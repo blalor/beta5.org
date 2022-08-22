@@ -8,9 +8,9 @@ variable "bucket_region" {
     description = "the region where the bucket resides"
 }
 
-variable "package_path" {
+variable "container_image_uri" {
     type = string
-    description = "path to the deployment package"
+    description = "ECR container image URI"
 }
 
 variable "photos_prefix" {
