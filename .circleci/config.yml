@@ -134,12 +134,12 @@ jobs:
                     name: push image only from main branch
                     command: |
                         tag="${ECR_ENDPOINT}/beta5.org/thumbor:${CIRCLE_SHA1}"
-                        echo "${tag}" > image-tag
+                        echo -n "${tag}" > image-tag
 
-                        if [ "${CIRCLE_BRANCH}" == "main" ]; then
+                        # if [ "${CIRCLE_BRANCH}" == "main" ]; then
                             docker tag app "${tag}"
                             docker push "${tag}"
-                        fi
+                        # fi
 
             -   persist_to_workspace:
                     root: "."
@@ -186,8 +186,13 @@ jobs:
             -   attach_workspace:
                     at: ~/project
 
+            -   run:
+                    name: create container image tfvars
+                    command: |
+                        printf 'thumbor_image_uri = "%s"\n' $( < ~/project/thumbor/image-tag ) > container_images.tfvars
+
             -   run: terraform init -input=false -backend-config=bucket=${STATE_BUCKET} -backend-config=region=${STATE_BUCKET_REGION}
-            -   run: terraform plan -input=false -out=plan
+            -   run: terraform plan -input=false -var-file=container_images.tfvars -out=plan
             -   run: terraform apply plan
             -   run: terraform output -json > terraform.json
 
