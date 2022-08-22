@@ -104,7 +104,7 @@ jobs:
             ## only build when the thumbor build script or config file has changed
             -   restore_cache:
                     keys:
-                        - &THUMBOR_CACHE_KEY v1-docker-{{ .Branch }}-01
+                        - &THUMBOR_CACHE_KEY v1-docker-{{ .Branch }}-02
                     paths:
                         - /caches/app.tar
 
