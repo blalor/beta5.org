@@ -1,1 +1,1 @@
-git+https://github.com/blalor/post-by-email.git@717048c04916f9cb63e6b30060d6f6724a3e4b40
+git+https://github.com/blalor/post-by-email.git@ad18ec49e57fac36edfa61e28a1d7ec1091ddb87
