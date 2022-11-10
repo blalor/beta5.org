@@ -45,8 +45,8 @@ images:
         name: Brick Oven Pizza, Austin, TX 🇺🇸
 ---
 
-{% include exif-image.html img=page.images.img_7509_jpg %}
 {% include exif-image.html img=page.images.img_7508_jpg %}
+{% include exif-image.html img=page.images.img_7509_jpg %}
 {% include exif-image.html img=page.images.img_7513_jpg %}
 
 
