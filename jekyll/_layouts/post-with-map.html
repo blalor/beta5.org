@@ -22,7 +22,7 @@ _images_with_location becomes an array (possibly empty) with keys into page.imag
 {%- assign _iwl_size = _images_with_location | size | minus: 1 -%}
 {%- assign _images_with_location = _images_with_location | slice: 0, _iwl_size | split: "," -%}
 
-{% if page.gpx or _images_with_location %}
+{% if page.gpx or _iwl_size > 0 %}
 <div id="map" style="height: 400px;"></div>
 
 {% comment %}
@@ -43,26 +43,23 @@ _images_with_location becomes an array (possibly empty) with keys into page.imag
 (function() {
     var _map = L.map("map", {fullscreenControl: true});
 
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={{ site.mapbox_token }}', {
-        maxZoom: 18,
-        attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> ' +
-            '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> ' +
-            '<strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
-        id: 'mapbox.outdoors'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(_map);
 
     var bounds = L.latLngBounds();
     
     {%- if page.gpx %}
         {% for gpx in page.gpx %}
-        loadGpx("{{ gpx }}", _map).on("loaded", function(evt) {
+        loadGpx("{{ gpx }}", _map).then((evt) => {
             bounds.extend(evt.target.getBounds())
             _map.fitBounds(bounds);
         });
         {%- endfor %}
     {% endif -%}
     
-    {%- if _images_with_location %}
+    {%- if _iwl_size > 0 %}
         var photoGroup = L.markerClusterGroup({
             // default functionality with a custom icon
             iconCreateFunction: function(cluster) {

@@ -20,6 +20,8 @@ The posts below (and the map above) are a log of the trip as I went.
 
 <script type="text/javascript">
     (function(_map) {
+        var mapBounds = L.latLngBounds();
+
         $.getJSON("/assets/geojson/summer-2019.json", function(data) {
             var icons = {
                 "fuel": L.divIcon({
@@ -125,9 +127,6 @@ The posts below (and the map above) are a log of the trip as I went.
             }
         });
         
-        // allow gpx assets to be reused across posts but without adding them to the map multiple times
-        var gpxAssets = new Set();
-        
         {% for post in site.tags[page.tag] -%}
             {%- for img in post.images -%}
                 {%- if img[1].exif.location %}
@@ -136,16 +135,19 @@ The posts below (and the map above) are a log of the trip as I went.
             {%- endfor -%}
             
             {%- for gpx in post.gpx %}
-        gpxAssets.add("{{ gpx }}")
+        loadGpx("{{ gpx }}", _map).then((evt) => {
+            mapBounds.extend(evt.target.getBounds());
+            _map.fitBounds(mapBounds);
+        });
             {%- endfor =%}
         {%- endfor %}
 
-        for (var iter = gpxAssets.values(), asset= null; asset = iter.next().value; ) {
-            loadGpx(asset, _map);
-        }
+        if (photoGroup.getLayers().length > 0) {
+            photoGroup.addTo(_map);
 
-        photoGroup.addTo(_map);
-        _map.fitBounds(photoGroup.getBounds());
+            mapBounds.extend(photoGroup.getBounds());
+            _map.fitBounds(mapBounds);
+        }
 
         // increase the marker's image size when zooming in
         _map.on("zoomend", function() {

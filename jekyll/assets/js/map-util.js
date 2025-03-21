@@ -12,21 +12,35 @@ function popUp(feature, layer) {
     }
 }
 
+/*
+Return a Promise that's fulfilled when the GPX file is loaded.
+*/
 function loadGpx(gpx, _map) {
-    return new L.GPX(
-        gpx,
-        {
-            async: true,
-            marker_options: {
-                startIconUrl: null,
-                startIcon: null,
-                endIconUrl: null,
-                endIcon: null,
+    return new Promise((resolve) => {
+        // https://unpkg.com/randomcolor@0.5.3/randomColor.js
 
-                shadowUrl: null,
-                wptIconUrls: null,
+        var g = new L.GPX(
+            gpx,
+            {
+                async: true,
+                marker_options: {
+                    startIconUrl: null,
+                    startIcon: null,
+                    endIconUrl: null,
+                    endIcon: null,
+
+                    shadowUrl: null,
+                    wptIconUrls: null,
+                }
             }
-        }).addTo(_map);
+        );
+
+        g.addEventListener("loaded", (evt) => {
+            resolve(evt);
+        });
+
+        g.addTo(_map);
+    });
 }
 
 function addPhotoToGroup(group, img, postUrl, postTitle) {

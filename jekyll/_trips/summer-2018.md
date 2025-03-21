@@ -21,6 +21,8 @@ The posts below (and the map above) are a log of the trip as I went.
 
 <script type="text/javascript">
     (function(_map) {
+        var mapBounds = L.latLngBounds();
+
         $.getJSON("/assets/geojson/fuel_report.json", function(data) {
             var icons = {
                 "fuel": L.divIcon({
@@ -134,12 +136,19 @@ The posts below (and the map above) are a log of the trip as I went.
             {%- endfor -%}
             
             {%- for gpx in post.gpx %}
-        loadGpx("{{ gpx }}", _map);
+        loadGpx("{{ gpx }}", _map).then((evt) => {
+            mapBounds.extend(evt.target.getBounds());
+            _map.fitBounds(mapBounds);
+        });
             {%- endfor =%}
         {%- endfor %}
 
-        photoGroup.addTo(_map);
-        _map.fitBounds(photoGroup.getBounds());
+        if (photoGroup.getLayers().length > 0) {
+            photoGroup.addTo(_map);
+
+            mapBounds.extend(photoGroup.getBounds());
+            _map.fitBounds(mapBounds);
+        }
 
         // increase the marker's image size when zooming in
         _map.on("zoomend", function() {
