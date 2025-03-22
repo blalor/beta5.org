@@ -2,7 +2,7 @@
 ## https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
 ---
 name: Deploy Everything
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+# run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
     - push
 
@@ -26,7 +26,7 @@ jobs:
                 with:
                     working-directory: jekyll
 
-                    ruby-version: 3.0
+                    ruby-version: "3.0"
                     bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
             -   name: jekyll build
