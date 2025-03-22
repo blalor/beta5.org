@@ -6,8 +6,8 @@ classes: "layout--post" ## the post css requires this class
 {{ content }}
 
 {%- comment -%}
-The nasty mess below is … a mess.  I only want to show the map if there are GPX
-files _or_ images with location data.  But liquid is so … limited that I can't
+The nasty mess below is … a mess.  I only want to show the map if there are GPX
+files _or_ images with location data.  But liquid is so … limited that I can't
 filter the page.images map directly, or create a native array, or, or, or.
 
 _images_with_location becomes an array (possibly empty) with keys into page.images

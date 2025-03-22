@@ -25,7 +25,7 @@ images:
         caption: all lit up
     IMG_5815_jpg:
         path: posts/2018-11-14-let-there-be-light/IMG_5815.jpg
-        caption: so much … stuff
+        caption: so much … stuff
     IMG_5817_jpg:
         path: posts/2018-11-14-let-there-be-light/IMG_5817.jpg
         caption: before
