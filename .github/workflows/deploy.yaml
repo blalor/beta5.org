@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 ## https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+## WTF AWS_REGION: https://github.com/aws-actions/configure-aws-credentials/issues/402
 ---
 name: Deploy Everything
 # run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
@@ -58,7 +59,7 @@ jobs:
     #             with:
     #                 aws-access-key-id: "${{ secrets.AWS_ACCESS_KEY_ID }}"
     #                 aws-secret-access-key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-    #                 aws-region: "${{ env.AWS_REGION }}"
+    #                 aws-region: "${{ env.AWS_CREDS_REGION }}"
 
     #         -   name: Login to Amazon ECR
     #             id: login-ecr
@@ -98,7 +99,7 @@ jobs:
                 with:
                     aws-access-key-id: "${{ secrets.AWS_ACCESS_KEY_ID }}"
                     aws-secret-access-key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-                    aws-region: "${{ env.AWS_REGION }}"
+                    aws-region: "${{ env.AWS_CREDS_REGION }}"
 
             -   name: setup terraform
                 uses: hashicorp/setup-terraform@v3.1.2
@@ -140,15 +141,6 @@ jobs:
                     path: terraform/terraform.json
                     if-no-files-found: error
 
-            -   name: Failure Breakpoint
-                if: failure()
-                uses: namespacelabs/breakpoint-action@41904415b21af42923bf7274c0673b19bd4cc7ef # v0.0.12
-                with:
-                    duration: 30m
-                    authorized-users: blalor
-                    authorized_keys: >-
-                        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFicpOt+KWymf34XF2zwIfHPeI7wnYH3/gbXB021GlPV blalor@bravo5.org (Bobo)
-
     deploy-site:
         needs:
             - build-site
@@ -168,7 +160,7 @@ jobs:
                 with:
                     aws-access-key-id: "${{ secrets.AWS_ACCESS_KEY_ID }}"
                     aws-secret-access-key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-                    aws-region: "${{ env.AWS_REGION }}"
+                    aws-region: "${{ env.AWS_CREDS_REGION }}"
 
             -   name: retrieve site artifact # from build-site job
                 uses: actions/download-artifact@v4.2.1
@@ -209,12 +201,3 @@ jobs:
                     )
 
                     aws s3 sync --delete _site/ "${target}"
-
-            -   name: Failure Breakpoint
-                if: failure()
-                uses: namespacelabs/breakpoint-action@41904415b21af42923bf7274c0673b19bd4cc7ef # v0.0.12
-                with:
-                    duration: 30m
-                    authorized-users: blalor
-                    authorized_keys: >-
-                        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFicpOt+KWymf34XF2zwIfHPeI7wnYH3/gbXB021GlPV blalor@bravo5.org (Bobo)
