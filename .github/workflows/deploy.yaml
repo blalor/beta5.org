@@ -19,7 +19,7 @@ jobs:
 
         steps:
             -   name: checkout
-                uses: actions/checkout@4.2.2
+                uses: actions/checkout@v4.2.2
 
             -   name: set up Ruby
                 uses: ruby/setup-ruby@v1.227.0
@@ -65,7 +65,7 @@ jobs:
     #             uses: aws-actions/amazon-ecr-login@v2.0.1
 
     #         -   name: checkout
-    #             uses: actions/checkout@4.2.2
+    #             uses: actions/checkout@v4.2.2
 
     #         -   name: build image
     #             id: build-image
@@ -118,7 +118,7 @@ jobs:
                     key: terraform-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('**/.terraform.lock.hcl') }}
 
             -   name: checkout
-                uses: actions/checkout@4.2.2
+                uses: actions/checkout@v4.2.2
 
             -   name: tf init
                 working-directory: terraform
