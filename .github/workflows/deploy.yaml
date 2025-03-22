@@ -140,6 +140,15 @@ jobs:
                     path: terraform/terraform.json
                     if-no-files-found: error
 
+            -   name: Failure Breakpoint
+                if: failure()
+                uses: namespacelabs/breakpoint-action@41904415b21af42923bf7274c0673b19bd4cc7ef # v0.0.12
+                with:
+                    duration: 30m
+                    authorized-users: blalor
+                    authorized_keys: >-
+                        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFicpOt+KWymf34XF2zwIfHPeI7wnYH3/gbXB021GlPV blalor@bravo5.org (Bobo)
+
     deploy-site:
         needs:
             - build-site
